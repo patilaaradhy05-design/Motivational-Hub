@@ -1,0 +1,92 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #1f1c2c, #928dab, #3b2f5c, #5c4b8a);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: white;
+  overflow-x: hidden;
+}
+
+@keyframes gradientBG {
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
+}
+
+/* Header */
+.box {
+  width: 905px;
+  height: 78px;
+  background: linear-gradient(135deg, #7affe9, #7aa0ff);
+  border-radius: 15px;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: xx-large;
+  z-index: 10;
+}
+
+/* Greeting */
+.greeting {
+  margin-top: 120px;
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+/* Top Horizontal Boxes - Auto Scroll */
+.carousel {
+  width: 100%;
+  overflow: hidden; /* hide scrollbar */
+  padding: 20px 0;
+}
+
+.track {
+  display: inline-flex;
+  animation: scrollLeft 30s linear infinite;
+}
+
+@keyframes scrollLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.box1 {
+  display: inline-block;
+  min-width: 150px;
+  margin: 0 10px;
+  padding: 20px;
+  background: linear-gradient(135deg, #ff7a7a, #7affe9);
+  border-radius: 15px;
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+}
+
+/* Vertical Scrollable Quotes */
+.vertical-quotes-container {
+  height: 400px;
+  overflow-y: auto; /* manual scroll */
+  margin: 50px 20px;
+}
+
+.vertical-quotes {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.quoteBox {
+  padding: 15px;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #7affe9, #ff7a7a);
+  font-size: 1em;
+  text-align: center;
+}

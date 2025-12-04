@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Motivational Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="box">
+    <h4>💡 Motivational Hub</h4>
+  </div>
+
+  <!-- Greeting -->
+  <div class="greeting" id="greeting"></div>
+
+  <!-- Name Input -->
+  <div class="nameInput" id="nameInput">
+    <input type="text" id="userNameInput" placeholder="Enter your name">
+    <button id="saveNameBtn">Save</button>
+  </div>
+
+  <!-- Change Name Button -->
+  <div class="changeNameDiv" id="changeNameDiv" style="display:none;">
+    <button id="changeNameBtn">Change Name</button>
+  </div>
+
+  <!-- Top Auto-Scrolling Horizontal Info Boxes -->
+  <div class="carousel">
+    <div class="track">
+      <div class="box1">💪 Stay Strong!</div>
+      <div class="box1">🔥 Keep Going!</div>
+      <div class="box1">🌟 Shine Bright!</div>
+      <div class="box1">🚀 Reach High!</div>
+      <div class="box1">🎯 Focus!</div>
+      <div class="box1">🏆 Achieve!</div>
+      <!-- duplicate for smooth loop -->
+      <div class="box1">💪 Stay Strong!</div>
+      <div class="box1">🔥 Keep Going!</div>
+      <div class="box1">🌟 Shine Bright!</div>
+      <div class="box1">🚀 Reach High!</div>
+      <div class="box1">🎯 Focus!</div>
+      <div class="box1">🏆 Achieve!</div>
+    </div>
+  </div>
+
+  <!-- Vertical Scrollable Quotes -->
+  <div class="vertical-quotes-container">
+    <div class="vertical-quotes" id="quotesContainer">
+      <!-- 100 quotes will be generated here -->
+    </div>
+  </div>
+
+<script>
+  // ===== User Greeting =====
+  const greeting = document.getElementById("greeting");
+  const nameInputDiv = document.getElementById("nameInput");
+  const userNameInput = document.getElementById("userNameInput");
+  const saveBtn = document.getElementById("saveNameBtn");
+  const changeNameDiv = document.getElementById("changeNameDiv");
+  const changeNameBtn = document.getElementById("changeNameBtn");
+
+  function showGreeting() {
+    const userName = localStorage.getItem("userName");
+    greeting.textContent = `👋 Hello, ${userName}! Welcome back!`;
+    nameInputDiv.style.display = "none";
+    if (!localStorage.getItem("changeButtonUsed")) {
+      changeNameDiv.style.display = "block";
+    }
+  }
+
+  if (localStorage.getItem("userName")) {
+    showGreeting();
+  } else {
+    nameInputDiv.style.display = "block";
+    changeNameDiv.style.display = "none";
+  }
+
+  saveBtn.addEventListener("click", () => {
+    const name = userNameInput.value.trim();
+    if(name){
+      localStorage.setItem("userName", name);
+      showGreeting();
+    }
+  });
+
+  changeNameBtn.addEventListener("click", () => {
+    nameInputDiv.style.display = "block";
+    changeNameDiv.style.display = "none";
+    userNameInput.value = "";
+    localStorage.setItem("changeButtonUsed", "true");
+  });
+
+  // ===== 100 Quotes =====
+  const quotes = [
+    "Believe in yourself!",
+    "Every day is a second chance.",
+    "Dream it. Wish it. Do it.",
+    "Stay positive, work hard, make it happen.",
+    "Success doesn’t come to you—you go to it.",
+    "Push yourself, because no one else is going to do it for you.",
+    "Don’t stop until you’re proud.",
+    "Your limitation—it’s only your imagination.",
+    "Great things never come from comfort zones.",
+    "Sometimes later becomes never. Do it now.",
+    "Little things make big days.",
+    "Don’t wait for opportunity. Create it.",
+    "Dream bigger. Do bigger.",
+    "Don’t watch the clock; do what it does. Keep going.",
+    "You are stronger than you think.",
+    "Failure is the condiment that gives success its flavor.",
+    "The harder you work, the luckier you get.",
+    "Do something today that your future self will thank you for.",
+    "The key to success is to focus on goals, not obstacles.",
+    "Your only limit is you.",
+    "Success is not for the lazy.",
+    "Wake up with determination. Go to bed with satisfaction.",
+    "Don’t quit. Suffer now and live the rest of your life as a champion.",
+    "Action is the foundational key to all success.",
+    "Great things take time. Be patient.",
+    "Believe you can and you’re halfway there.",
+    "Stay patient and trust the process.",
+    "The best way to get started is to quit talking and begin doing.",
+    "Success is the sum of small efforts repeated day in and day out.",
+    "Work hard in silence. Let success make the noise.",
+    "If you can dream it, you can do it.",
+    "Don’t stop when you’re tired. Stop when you’re done.",
+    "Hustle until your haters ask if you’re hiring.",
+    "Success is what comes after you stop making excuses.",
+    "Your passion is waiting for your courage to catch up.",
+    "Do it with passion or not at all.",
+    "Don’t limit your challenges. Challenge your limits.",
+    "Motivation is what gets you started. Habit is what keeps you going.",
+    "Don’t be pushed around by the fears in your mind.",
+    "Great minds discuss ideas; average minds discuss events; small minds discuss people.",
+    "Do one thing every day that scares you.",
+    "Failure is success in progress.",
+    "The only way to do great work is to love what you do.",
+    "Strive for progress, not perfection.",
+    "Don’t wait. The time will never be just right.",
+    "Success doesn’t just find you. You have to go out and get it.",
+    "The secret to getting ahead is getting started.",
+    "Push harder than yesterday if you want a different tomorrow.",
+    "Opportunities don’t happen. You create them.",
+    "Success is not in what you have, but who you are.",
+    "Don’t let yesterday take up too much of today.",
+    "The best time for new beginnings is now.",
+    "Be the energy you want to attract.",
+    "Your vibe attracts your tribe.",
+    "Stay humble. Work hard. Be kind.",
+    "Turn your wounds into wisdom.",
+    "Every accomplishment starts with the decision to try.",
+    "Don’t let small minds convince you that your dreams are too big.",
+    "If it doesn’t challenge you, it won’t change you.",
+    "Doubt kills more dreams than failure ever will.",
+    "Do not wait to strike till the iron is hot; but make it hot by striking.",
+    "Act as if what you do makes a difference. It does.",
+    "Work until your idols become rivals.",
+    "Don’t be afraid to give up the good to go for the great.",
+    "Everything you’ve ever wanted is on the other side of fear.",
+    "Success usually comes to those who are too busy to be looking for it.",
+    "Don’t be busy, be productive.",
+    "Do what you love and the money will follow.",
+    "Fall seven times and stand up eight.",
+    "You don’t have to be great to start, but you have to start to be great.",
+    "The expert in anything was once a beginner.",
+    "Small daily improvements are the key to staggering long-term results.",
+    "Hustle in silence and let your success make the noise.",
+    "If opportunity doesn’t knock, build a door.",
+    "Do not wait for leaders; do it alone, person to person.",
+    "Sometimes we’re tested not to show our weaknesses, but to discover our strengths.",
+    "Your dream doesn’t have an expiration date. Take a deep breath and try again.",
+    "Little progress each day adds up to big results.",
+    "Success is not just making money. Success is happiness.",
+    "Do what is right, not what is easy.",
+    "Discipline is the bridge between goals and accomplishment.",
+    "Do what you can with what you have, where you are.",
+    "Don’t let perfection be the enemy of progress.",
+    "Strive not to be a success, but rather to be of value.",
+    "The way to get started is to quit talking and begin doing.",
+    "It always seems impossible until it’s done.",
+    "Success is liking yourself, liking what you do, and liking how you do it.",
+    "If you want something you’ve never had, you must be willing to do something you’ve never done.",
+    "Great things never come from comfort zones.",
+    "Believe in your infinite potential.",
+    "Don’t let anyone dull your sparkle.",
+    "Your time is limited, don’t waste it living someone else’s life.",
+    "Stay foolish to stay sane.",
+    "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+    "Everything you can imagine is real.",
+    "Happiness is not something ready made. It comes from your own actions.",
+    "Motivation gets you going. Habit keeps you growing.",
+    "Be yourself; everyone else is already taken.",
+    "The best revenge is massive success.",
+    "Do what you love, love what you do."
+  ];
+
+  const quotesContainer = document.getElementById("quotesContainer");
+  quotes.forEach(q=>{
+    const div = document.createElement("div");
+    div.className = "quoteBox";
+    div.textContent = q;
+    quotesContainer.appendChild(div);
+  });
+</script>
+
+</body>
+</html>
